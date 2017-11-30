@@ -1,0 +1,24 @@
+
+# Install needed packages
+dnf install -y wget kexec-tools
+
+# Download fedora 27 pxeboot kernel and initrd
+cd /
+wget https://dl.fedoraproject.org/pub/fedora/linux/releases/27/Everything/x86_64/os/images/pxeboot/vmlinuz
+wget https://dl.fedoraproject.org/pub/fedora/linux/releases/27/Everything/x86_64/os/images/pxeboot/initrd.img
+
+# Launch automated install
+cd /
+kexec -l vmlinuz --initrd=initrd.img --command-line="ip=dhcp inst.stage2=https://dl.fedoraproject.org/pub/fedora/linux/releases/27/Everything/x86_64/os/ inst.ks=https://raw.githubusercontent.com/champtar/notes/master/kexec-install/anaconda-ks.cfg"
+kexec -e
+
+# Or launch vnc install
+kexec -l vmlinuz --initrd=initrd.img --command-line="ip=dhcp inst.vnc inst.vncpassword=48ea6e5f inst.stage2=https://dl.fedoraproject.org/pub/fedora/linux/releases/27/Everything/x86_64/os/"
+
+# don't forget to change luks password after first boot
+cryptsetup luksChangeKey /dev/vda2
+
+# see
+https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/installation_guide/sect-kickstart-syntax
+https://docs.fedoraproject.org/f27/install-guide/appendixes/Kickstart_Syntax_Reference.html
+
