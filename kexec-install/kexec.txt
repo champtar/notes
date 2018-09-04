@@ -2,9 +2,9 @@
 # Install needed packages
 dnf install -y wget kexec-tools
 
-# Download fedora 27 pxeboot kernel and initrd
+# Download fedora 28 pxeboot kernel and initrd
 cd /
-wget https://dl.fedoraproject.org/pub/fedora/linux/releases/27/Everything/x86_64/os/images/pxeboot/{initrd.img,vmlinuz}
+wget https://dl.fedoraproject.org/pub/fedora/linux/releases/28/Everything/x86_64/os/images/pxeboot/{initrd.img,vmlinuz}
 
 # Download kickstart file (you can of course tune it)
 wget https://raw.githubusercontent.com/champtar/notes/master/kexec-install/anaconda-ks.cfg -O ks.cfg
