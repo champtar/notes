@@ -7,13 +7,13 @@ yum install -y wget kexec-tools
 # or ...
 
 ################################################################################
-# Kexec Fedora 29
+# Kexec Fedora 31
 cd /
-wget https://dl.fedoraproject.org/pub/fedora/linux/releases/29/Everything/x86_64/os/images/pxeboot/{initrd.img,vmlinuz}
+wget https://dl.fedoraproject.org/pub/fedora/linux/releases/31/Everything/x86_64/os/images/pxeboot/{initrd.img,vmlinuz}
 
 # Launch rescue boot
 cd /
-kexec -l vmlinuz --initrd=initrd.img --command-line="ip=dhcp inst.rescue inst.text inst.sshd inst.repo=https://dl.fedoraproject.org/pub/fedora/linux/releases/29/Everything/x86_64/os/"
+kexec -l vmlinuz --initrd=initrd.img --command-line="ip=dhcp inst.rescue inst.text inst.sshd inst.repo=https://dl.fedoraproject.org/pub/fedora/linux/releases/31/Everything/x86_64/os/"
 kexec -e
 
 ################################################################################
