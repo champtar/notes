@@ -14,14 +14,10 @@ echo ks.cfg | cpio -c -o >> initrd.img
 
 # Launch automated install
 cd /
-kexec -l vmlinuz --initrd=initrd.img --command-line="ip=dhcp inst.ks=file:/ks.cfg"
+kexec -l vmlinuz --initrd=initrd.img --command-line="ip=dhcp inst.sshd inst.ks=file:/ks.cfg inst.repo=https://dl.fedoraproject.org/pub/fedora/linux/releases/31/Everything/x86_64/os/"
 kexec -e
 
-# Or launch vnc install
-kexec -l vmlinuz --initrd=initrd.img --command-line="ip=dhcp inst.vnc inst.vncpassword=48ea6e5f inst.ks=file:/ks.cfg"
-
-# don't forget to change luks password after first boot
-cryptsetup luksChangeKey /dev/vda2
+# you need to connect via ssh during the install to set the luks key (tmux a)
 
 # see
 https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/installation_guide/sect-kickstart-syntax
