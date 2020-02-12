@@ -7,7 +7,7 @@ cd /
 wget https://dl.fedoraproject.org/pub/fedora/linux/releases/31/Everything/x86_64/os/images/pxeboot/{initrd.img,vmlinuz}
 
 # Download kickstart file (you can of course tune it)
-wget https://raw.githubusercontent.com/champtar/notes/master/kexec-install/fedora-ks.cfg -O ks.cfg
+wget https://raw.githubusercontent.com/champtar/notes/master/kexec/fedora-ks.cfg -O ks.cfg
 
 # Append ks.cfg to initrd.img
 echo ks.cfg | cpio -c -o >> initrd.img
