@@ -2,9 +2,9 @@
 # Install needed packages
 dnf install -y wget kexec-tools
 
-# Download fedora 31 pxeboot kernel and initrd
+# Download fedora 32 pxeboot kernel and initrd
 cd /
-wget https://dl.fedoraproject.org/pub/fedora/linux/releases/31/Everything/x86_64/os/images/pxeboot/{initrd.img,vmlinuz}
+wget https://dl.fedoraproject.org/pub/fedora/linux/releases/32/Everything/x86_64/os/images/pxeboot/{initrd.img,vmlinuz}
 
 # Download kickstart file (you can of course tune it)
 wget https://raw.githubusercontent.com/champtar/notes/master/kexec/fedora-ks.cfg -O ks.cfg
@@ -14,7 +14,7 @@ echo ks.cfg | cpio -c -o >> initrd.img
 
 # Launch automated install
 cd /
-kexec -l vmlinuz --initrd=initrd.img --command-line="ip=dhcp inst.sshd inst.ks=file:/ks.cfg inst.repo=https://dl.fedoraproject.org/pub/fedora/linux/releases/31/Everything/x86_64/os/"
+kexec -l vmlinuz --initrd=initrd.img --command-line="ip=dhcp inst.sshd inst.ks=file:/ks.cfg inst.repo=https://dl.fedoraproject.org/pub/fedora/linux/releases/32/Everything/x86_64/os/"
 kexec -e
 
 # you need to connect via ssh during the install to set the luks key (tmux a)
