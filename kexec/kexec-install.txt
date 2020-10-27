@@ -10,7 +10,7 @@ wget https://dl.fedoraproject.org/pub/fedora/linux/releases/32/Everything/x86_64
 wget https://raw.githubusercontent.com/champtar/notes/master/kexec/fedora-ks.cfg -O ks.cfg
 
 # Append ks.cfg to initrd.img
-echo ks.cfg | cpio -c -o >> initrd.img
+echo ks.cfg | cpio -H newc -o >> initrd.img
 
 # Launch automated install
 cd /
